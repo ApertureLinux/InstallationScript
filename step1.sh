@@ -4,8 +4,6 @@
 
 clear
 
-echo "Server = https://mirror.andy29485.moe/aperture/" > /etc/pacman.d/mirrorlist 
-
 #verify bios or uefi
 
 bootmode=uefi
