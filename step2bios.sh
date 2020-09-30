@@ -9,7 +9,7 @@ echo Which disk would you like to install Aperture Linux to?
 read installdrive
 
 #warn user that disk will be totally wiped
-echo The disk will be totally wiped, are you sure you want to continue? (Y/n)
+echo "The disk will be totally wiped, are you sure you want to continue? (Y/n)"
 read agreement
 if [ $agreement != Y ];
 then
