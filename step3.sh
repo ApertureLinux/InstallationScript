@@ -3,7 +3,7 @@
 ##This part of the script will install Aperture Linux on your newly formatted partitions!
 
 #Remove Arch mirrors, add Aperture mirror to mirrorlist
-echo "Server = http://mirror.aperturelinux.org/$repo/os/$arch" > /etc/pacman.d/mirrorlist
+echo 'Server = http://mirror.aperturelinux.org/$repo/os/$arch' > /etc/pacman.d/mirrorlist
 
 #TODO: if VM, don't install linux-firmware, else do
 #TODO: add networking tools, 
@@ -23,12 +23,12 @@ arch-chroot /mnt
 clear
 ls /usr/share/zoneinfo
 echo "Choose your region"
-read $userregion
+read userregion
 clear
-ls /usr/share/zoneinfo/($userregion)
+ls /usr/share/zoneinfo/$userregion
 echo "Choose a city that shares your time zone"
-read $usercity
-ln -sf /usr/share/zoneinfo/($userregion)/($usercity) /etc/localtime
+read usercity
+ln -sf /usr/share/zoneinfo/$userregion/$usercity /etc/localtime
 hwclock --systohc
 
 #localization
@@ -43,8 +43,9 @@ echo "LANG=$userlocale1" > /etc/locale.conf
 
 #hostname
 echo "What will you name your computer?"
-read $hostname
+read hostname
 echo $hostname > /etc/hostname
 
-
-
+clear
+echo "Select a root password."
+passwd
