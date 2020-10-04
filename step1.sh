@@ -20,11 +20,11 @@ clear
 
 website=https://aperturelinux.org
 
-ping -q -c5 ($website) > /dev/null
+ping -q -c5 $website > /dev/null
  
 if [ $? -eq 0 ]
 then
-	./step2($bootmode).sh
+	./step2$bootmode.sh
 else
 	./wificonnect.sh
 fi
