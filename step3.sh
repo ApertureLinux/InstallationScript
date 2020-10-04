@@ -3,7 +3,7 @@
 ##This part of the script will install Aperture Linux on your newly formatted partitions!
 
 #Remove Arch mirrors, add Aperture mirror to mirrorlist
-echo "Server = https://mirror.andy29485.moe/aperture/" > /etc/pacman.d/mirrorlist
+echo "Server = http://mirror.aperturelinux.org/$repo/os/$arch" > /etc/pacman.d/mirrorlist
 
 #TODO: if VM, don't install linux-firmware, else do
 #TODO: add networking tools, 
