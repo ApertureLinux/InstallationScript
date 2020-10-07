@@ -15,6 +15,8 @@ genfstab -U /mnt >> /mnt/etc/fstab
 #Copy remaining scripts to the new system before chrooting in
 mkdir /mnt/ApertureInstall
 cp step4.sh /mnt/ApertureInstall/step4.sh
+echo $bootmode > /mnt/ApertureInstall/bootmode
+echo $installdrive > /mnt/ApertureInstall/installdrive
 #etc
 
 arch-chroot /mnt ./ApertureInstall/step4.sh
