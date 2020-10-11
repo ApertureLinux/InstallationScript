@@ -26,5 +26,5 @@ if [ $? -eq 0 ]
 then
 	./step2$bootmode.sh
 else
-	./wificonnect.sh
+	echo 'An active internet connection is required for Aperture Linux installation. Please connect a wired connection, or configure a wireless connection using the "iwd" command.'
 fi

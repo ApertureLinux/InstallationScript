@@ -29,8 +29,20 @@ read rootsize
 #clear signature from install drive
 wipefs --all --force $installdrive
 
+echo "THIS WILL DELETE THE ENTIRE HARD DRIVE. NOTHING WILL REMAIN. EVERYTHING WILL BE COMPLETELY WIPED. ARE YOU SURE YOU WISH TO CONTINUE? (Y/n)"
+read agreement2
+if [ $agreement2 != Y ];
+then
+	exit 00
+fi
+
 #fdisk process based on variables
 fdisk $installdrive 
+d
+d
+d
+d
+d
 d
 n
 

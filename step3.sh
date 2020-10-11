@@ -5,8 +5,7 @@
 #Remove Arch mirrors, add Aperture mirror to mirrorlist
 echo 'Server = http://mirror.aperturelinux.org/$repo/os/$arch' > /etc/pacman.d/mirrorlist
 
-#TODO: if VM, don't install linux-firmware, else do
-#TODO: add networking tools, 
+#TODO: if VM, don't install linux-firmware, else do 
 
 pacstrap /mnt linux linux-firmware base base-devel zsh neovim man-db man-pages iwd
 
