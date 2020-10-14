@@ -18,7 +18,7 @@ clear
 
 #check for internet connection or connect to wifi
 
-website=https://aperturelinux.org
+website=aperturelinux.org
 
 ping -q -c5 $website > /dev/null
  
