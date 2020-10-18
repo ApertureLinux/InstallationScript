@@ -8,7 +8,7 @@ clear
 
 bootmode=uefi
 
-if [ ! -d "/sys/firmware/efi/efivars"] ; then
+if [ ! -d "/sys/firmware/efi/efivars" ] ; then
 	bootmode=bios
 fi
 
@@ -18,6 +18,7 @@ clear
 
 website=aperturelinux.org
 
+echo "Testing Network Connection..."
 ping -q -c5 $website > /dev/null
  
 if [ $? -eq 0 ]
