@@ -9,7 +9,7 @@ clear
 bootmode=uefi
 
 if [ ! -d "/sys/firmware/efi/efivars" ] ; then
-	bootmode=bios;
+	bootmode=bios
 fi
 
 clear
