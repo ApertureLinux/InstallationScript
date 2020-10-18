@@ -8,10 +8,8 @@ clear
 
 bootmode=uefi
 
-if ls /sys/firmware/efi/efivars | grep ERROR; then
-	set bootmode=bios
-else
-	set bootmode=uefi
+if [ ! -d "/sys/firmware/efi/efivars"] ; then
+	bootmode=bios
 fi
 
 clear
