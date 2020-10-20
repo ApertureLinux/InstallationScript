@@ -36,7 +36,7 @@ then
 fi
 
 #fdisk process based on variables
-fdisk $installdrive 
+fdisk $installdrive << EOFDISKLOLTHATSAPUN 
 d
 d
 d
@@ -62,7 +62,7 @@ n
 
 
 w
-
+EOFDISKLOLTHATSAPUN
 
 mkfs.ext4 "$installdrive"1
 mkfs.ext4 "$installdrive"3
