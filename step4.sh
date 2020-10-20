@@ -3,12 +3,10 @@
 #Set timezone
 clear
 ls /usr/share/zoneinfo
-echo "Choose your region"
-read userregion
+read -p "Choose your region" userregion
 clear
 ls /usr/share/zoneinfo/$userregion
-echo "Choose a city that shares your time zone"
-read usercity
+read -p "Choose a city that shares your time zone" usercity
 ln -sf /usr/share/zoneinfo/$userregion/$usercity /etc/localtime
 hwclock --systohc
 
@@ -23,8 +21,7 @@ locale-gen
 echo "LANG=$userlocale1" > /etc/locale.conf
 
 #hostname
-echo "What will you name your computer?"
-read hostname
+read -p "What will you name your computer?" hostname
 echo $hostname > /etc/hostname
 
 clear

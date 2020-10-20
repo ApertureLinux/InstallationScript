@@ -5,12 +5,13 @@ timedatectl set-ntp true
 #PARTITIONING THE DISKS: boss fight #1
 
 #ask which disk to install on, set disk to variable
-echo Which disk would you like to install Aperture Linux to?
-read installdrive
+clear
+lsblk
+read -p "Which disk would you like to install Aperture Linux to? [/dev/sdX] " installdrive
 
 #warn user that disk will be totally wiped
-echo "The disk will be totally wiped, are you sure you want to continue? (Y/n)"
-read agreement
+clear
+read -p "$installdrive will be totally wiped, are you sure you want to continue? [Y/n]" agreement
 if [ $agreement != Y ];
 then
 	exit 00
@@ -23,14 +24,12 @@ swapsize="$(awk "BEGIN {print $totalram*$swapmultiplier}")"
 
 
 #ask user for root partition size
-echo "How large do you want your root partition in gigabytes? (Recommended: 20)"
-read rootsize
+read -p "How large do you want your root partition in gigabytes? (Recommended: 20)" rootsize
 
 #clear signature from install drive
 wipefs --all --force $installdrive
 
-echo "THIS WILL DELETE THE ENTIRE HARD DRIVE. NOTHING WILL REMAIN. EVERYTHING WILL BE COMPLETELY WIPED. ARE YOU SURE YOU WISH TO CONTINUE? (Y/n)"
-read agreement2
+read -p "THIS WILL DELETE THE ENTIRE HARD DRIVE. NOTHING WILL REMAIN. EVERYTHING WILL BE COMPLETELY WIPED. ARE YOU SURE YOU WISH TO CONTINUE? [Y/n]" agreement2
 if [ $agreement2 != Y ];
 then
 	exit 00
