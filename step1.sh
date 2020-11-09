@@ -12,6 +12,8 @@ if [ ! -d "/sys/firmware/efi/efivars" ] ; then
 	bootmode=bios
 fi
 
+export bootmode
+
 clear
 
 #check for internet connection or connect to wifi
