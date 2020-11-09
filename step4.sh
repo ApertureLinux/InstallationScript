@@ -31,11 +31,11 @@ passwd
 #GRUB install
 bootmode=`cat /ApertureInstall/bootmode`
 installdrive=`cat /ApertureInstall/installdrive`
-if $bootmode=uefi; then
+if [ $bootmode = uefi ] ; then
 	pacman -S grub efibootmgr
 	grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 	grub-mkconfig -o /boot/grub/grub.cfg
-else if $bootmode=bios; then
+elif [ $bootmode = bios ]; then
 	pacman -S grub
 	grub-install --target=i386-pc $installdrive
 	grub-mkconfig -o /boot/grub/grub.cfg

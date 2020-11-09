@@ -25,7 +25,7 @@ ping -q -c5 $website > /dev/null
  
 if [ $? -eq 0 ]
 then
-	./step2$bootmode.sh
+	. ./step2$bootmode.sh
 else
 	echo 'An active internet connection is required for Aperture Linux installation. Please connect a wired connection, or configure a wireless connection using the "iwd" command.'
 fi

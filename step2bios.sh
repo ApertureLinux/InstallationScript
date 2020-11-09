@@ -50,4 +50,4 @@ mkfs.ext4 "$installdrive"2 #root
 mount "$installdrive"2 /mnt #mount root
 mkdir /mnt/boot
 mount "$installdrive"1 /mnt/boot
-./step3.sh
+. ./step3.sh
