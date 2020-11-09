@@ -41,6 +41,7 @@ elif [ $bootmode = bios ]; then
 	grub-install --target=i386-pc $installdrive
 	mkdir /boot/grub
 	grub-mkconfig -o /boot/grub/grub.cfg
+	grub-install --target=i386-pc --recheck $installdrive
 fi
 
 clear
