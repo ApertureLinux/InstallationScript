@@ -40,8 +40,8 @@ fi
 #fdisk process based on variables
 sgdisk $installdrive -Z
 sgdisk $installdrive -o
-sgdisk $installdrive -n 1:0:200MiB
-sgdisk $installdrive -n 2:201MiB:
+sgdisk $installdrive -n 1:0:500MiB
+sgdisk $installdrive -n 2:501MiB:
 sgdisk $installdrive -t 1:ef02
 
 mkfs.ext4 "$installdrive"1 #grub
