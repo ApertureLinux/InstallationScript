@@ -17,6 +17,8 @@ then
 	exit 00
 fi
 
+export installdrive
+
 #establish variables for RAM amount, calculate swap size
 totalram="$(free -ht | grep -Eo '[0-9]{1,4}' | head -1)"
 swapmultiplier=1.5
