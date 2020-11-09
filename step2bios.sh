@@ -36,11 +36,11 @@ then
 fi
 
 #fdisk process based on variables
-sgdisk $installdisk -Z
-sgdisk $installdisk -o
-sgdisk $installdisk -n 1:0:200MiB
-sgdisk $installdisk -n 2:201MiB:
-sgdisk $installdisk -t 1:ef02
+sgdisk $installdrive -Z
+sgdisk $installdrive -o
+sgdisk $installdrive -n 1:0:200MiB
+sgdisk $installdrive -n 2:201MiB:
+sgdisk $installdrive -t 1:ef02
 
 mkfs.ext4 "$installdrive"1 #grub
 mkfs.ext4 "$installdrive"2 #root
