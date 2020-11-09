@@ -36,42 +36,16 @@ then
 fi
 
 #fdisk process based on variables
-fdisk $installdrive << EOFDISKLOLTHATSAPUN 
-d
-d
-d
-d
-d
-d
-n
+sgdisk $installdisk -Z
+sgdisk $installdisk -o
+sgdisk $installdisk -n 1:0:200MiB
+sgdisk $installdisk -n 2:201MiB:
+sgdisk $installdisk -t 1:ef02
 
+mkfs.ext4 "$installdrive"1 #grub
+mkfs.ext4 "$installdrive"2 #root
 
-
-+200M
-n
-
-
-
-+"$swapsize"G
-n
-
-
-+"$rootsize"G
-n
-
-
-
-w
-EOFDISKLOLTHATSAPUN
-
-mkfs.ext4 "$installdrive"1
-mkfs.ext4 "$installdrive"3
-mkfs.ext4 "$installdrive"4
-mkswap "$installdrive"2
-swapon "$installdrive"2
-mount "$installdrive"3 /mnt
-mkdir /mnt/home
+mount "$installdrive"2 /mnt #mount root
 mkdir /mnt/boot
 mount "$installdrive"1 /mnt/boot
-mount "$installdrive"4 /mnt/home
 ./step3.sh
