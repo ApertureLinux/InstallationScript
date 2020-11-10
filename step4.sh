@@ -32,16 +32,17 @@ passwd
 bootmode=`cat /ApertureInstall/bootmode`
 installdrive=`cat /ApertureInstall/installdrive`
 if [ $bootmode = uefi ] ; then
-	pacman -S grub efibootmgr
+	pacman -S grub efibootmgr --noconfirm
 	grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 	mkdir /boot/grub
 	grub-mkconfig -o /boot/grub/grub.cfg
 elif [ $bootmode = bios ]; then
-	pacman -S grub
+	pacman -S grub --noconfirm
 	grub-install --target=i386-pc $installdrive
 	mkdir /boot/grub
 	grub-mkconfig -o /boot/grub/grub.cfg
 	grub-install --target=i386-pc --recheck $installdrive
+	pacman -S linux --noconfirm
 fi
 
 clear

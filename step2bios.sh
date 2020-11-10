@@ -26,7 +26,7 @@ swapsize="$(awk "BEGIN {print $totalram*$swapmultiplier}")"
 
 
 #ask user for root partition size
-read -p "How large do you want your root partition in gigabytes? (Recommended: 20)" rootsize
+# read -p "How large do you want your root partition in gigabytes? (Recommended: 20)" rootsize
 
 #clear signature from install drive
 wipefs --all --force $installdrive
