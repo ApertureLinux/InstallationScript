@@ -10,7 +10,7 @@ pacman-key --lsign-key 94EBB7A5965B9914
 
 #TODO: if VM, don't install linux-firmware, else do 
 
-pacstrap /mnt linux linux-firmware base base-devel zsh neovim man-db man-pages iwd
+pacstrap /mnt linux linux-firmware base base-devel zsh neovim neofetch man-db man-pages iwd dhcpcd netctl wpa_supplicant dialog
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
