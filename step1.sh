@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#stop mirror update
+
+systemctl stop reflector.service
+
 #installation script part 1
 
 clear
