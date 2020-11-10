@@ -5,7 +5,7 @@
 #Remove Arch mirrors, add Aperture mirror to mirrorlist
 echo 'Server = http://mirror.aperturelinux.org/$repo/os/$arch' > /etc/pacman.d/mirrorlist
 
-pacman-key --keyserver pool.sks-keyservers.net --recv-keys 94EBB7A5965B9914
+pacman-key --keyserver pool.sks-keyservers.net --recv-keys 94EBB7A5965B9914 && \
 pacman-key --lsign-key 94EBB7A5965B9914
 
 #TODO: if VM, don't install linux-firmware, else do 
