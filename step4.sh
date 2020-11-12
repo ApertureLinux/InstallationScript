@@ -46,4 +46,12 @@ elif [ $bootmode = bios ]; then
 fi
 
 clear
+
+#add user
+read -p "Type your desired username: " newusername
+useradd $newusername
+passwd $newusername
+usermod --append --groups wheel $newusername
+sed -i '/%wheel ALL=(ALL) ALL/s/^#//g' /etc/sudoers 
+
 echo "Aperture Linux is probably now installed on your system~!"
