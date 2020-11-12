@@ -7,11 +7,11 @@ timedatectl set-ntp true
 #ask which disk to install on, set disk to variable
 clear
 lsblk
-read -p "Which disk would you like to install Aperture Linux to? [/dev/sdX] " installdrive
+read -p "Which disk would you like to install Aperture Linux to? [/dev/sdX]: " installdrive
 
 #warn user that disk will be totally wiped
 clear
-read -p "$installdrive will be totally wiped, are you sure you want to continue? [Y/n]" agreement
+read -p "$installdrive will be totally wiped, are you sure you want to continue? [Y/n]: " agreement
 if [ $agreement != Y ];
 then
 	exit 00
@@ -31,7 +31,7 @@ swapsize="$(awk "BEGIN {print $totalram*$swapmultiplier}")"
 #clear signature from install drive
 wipefs --all --force $installdrive
 
-read -p "THIS WILL DELETE THE ENTIRE HARD DRIVE. NOTHING WILL REMAIN. EVERYTHING WILL BE COMPLETELY WIPED. ARE YOU SURE YOU WISH TO CONTINUE? [Y/n]" agreement2
+read -p "THIS WILL DELETE THE ENTIRE HARD DRIVE. NOTHING WILL REMAIN. EVERYTHING WILL BE COMPLETELY WIPED. ARE YOU SURE YOU WISH TO CONTINUE? [Y/n]: " agreement2
 if [ $agreement2 != Y ];
 then
 	exit 00
