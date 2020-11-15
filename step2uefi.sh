@@ -5,23 +5,40 @@ timedatectl set-ntp true
 #PARTITIONING THE DISKS: boss fight #1
 
 #ask which disk to install on, set disk to variable
+clear
+lsblk
+read -p "Which disk would you like to install Aperture Linux to? [/dev/sdX]: " installdrive
 
 #warn user that disk will be totally wiped
+clear
+read -p "$installdrive will be totally wiped, are you sure you want to continue? [Y/n]: " agreement
+if [ $agreement != Y ];
+then
+	        exit 00
+fi
 
-#establish variables for RAM amount and disk size
-totalram="$(free -ht | grep -Eo '[0-9]{1,4}' | head -1)"
-swapmultiplier=1.5
-swapsize="$(awk "BEGIN {print $totalram*$swapmultiplier}")"
+export installdrive
 
-#set swap variable to 1.5x RAM amount
+#clear signature from install drive
+wipefs --all --force $installdrive
+
+read -p "THIS WILL DELETE THE ENTIRE HARD DRIVE. NOTHING WILL REMAIN. EVERYTHING WILL BE COMPLETELY WIPED. ARE YOU SURE YOU WISH TO CONTINUE? [Y/n]: " agreement2
+if [ $agreement2 != Y ];
+then
+	        exit 00
+fi
 
 #fdisk process based on variables
+sgdisk $installdrive -Z
+sgdisk $installdrive -o
+sgdisk $installdrive -n 1:0:512MiB
+sgdisk $installdrive -n 2:513MiB:
+sgdisk $installdrive -t 1:ef00
 
+mkfs.ext4 "$installdrive"2 #root
+mkfs.fat -F32 "$installdrive"1 #uefi
 
-###sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk $installdrive
-###o #clear partition table
-###n #new partition
-####etc etc
-
-###q #quit
-
+mount "$installdrive"2 /mnt #mount root
+mkdir /mnt/efi
+mount "$installdrive"1 /mnt/efi
+. ./step3.sh

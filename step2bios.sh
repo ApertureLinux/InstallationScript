@@ -19,15 +19,6 @@ fi
 
 export installdrive
 
-#establish variables for RAM amount, calculate swap size
-totalram="$(free -ht | grep -Eo '[0-9]{1,4}' | head -1)"
-swapmultiplier=1.5
-swapsize="$(awk "BEGIN {print $totalram*$swapmultiplier}")"
-
-
-#ask user for root partition size
-# read -p "How large do you want your root partition in gigabytes? (Recommended: 20)" rootsize
-
 #clear signature from install drive
 wipefs --all --force $installdrive
 
@@ -40,12 +31,11 @@ fi
 #fdisk process based on variables
 sgdisk $installdrive -Z
 sgdisk $installdrive -o
-sgdisk $installdrive -n 1:0:2MiB
-sgdisk $installdrive -n 2:5MiB:
+sgdisk $installdrive -n 1:0:5MiB
+sgdisk $installdrive -n 2:6MiB:
 sgdisk $installdrive -t 1:ef02
 sgdisk $installdrive -u 1:21686148-6449-6E6F-744E-656564454649
 
-#mkfs.ext4 "$installdrive"1 #grub
 mkfs.ext4 "$installdrive"2 #root
 
 mount "$installdrive"2 /mnt #mount root
