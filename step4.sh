@@ -54,4 +54,9 @@ passwd $newusername
 usermod --append --groups wheel $newusername
 sed -i '/%wheel ALL=(ALL) ALL/s/^#//g' /etc/sudoers 
 
+#aperture configs, default shell
+chsh -s /bin/zsh
+curl https://raw.githubusercontent.com/ApertureLinux/Configuration/main/.zshrc > /home/$newusername/.zshrc
+
+
 echo "Aperture Linux is probably now installed on your system~!"
