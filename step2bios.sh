@@ -7,7 +7,7 @@ timedatectl set-ntp true
 #ask which disk to install on, set disk to variable
 clear
 lsblk
-read -p "Which disk would you like to install Aperture Linux to? [/dev/sdX]: " installdrive
+read -p "Which disk would you like to install Aperture Linux to? [/dev/sdX or /dev/nvmeXn1]: " installdrive
 
 #warn user that disk will be totally wiped
 clear
@@ -36,9 +36,17 @@ sgdisk $installdrive -n 2:6MiB:
 sgdisk $installdrive -t 1:ef02
 sgdisk $installdrive -u 1:21686148-6449-6E6F-744E-656564454649
 
-mkfs.ext4 "$installdrive"2 #root
 
-mount "$installdrive"2 /mnt #mount root
-mkdir /mnt/boot
-mount "$installdrive"1 /mnt/boot
+if [[ $var == *"nvme"* ]]; then
+	        mkfs.ext4 "$installdrive"p2
+		mount "$installdrive"p2 /mnt 
+		mkdir /mnt/boot
+		mount "$installdrive"p1 /mnt/boot;
+	else
+		mkfs.ext4 "$installdrive"2 #root
+		mount "$installdrive"2 /mnt #mount root
+		mkdir /mnt/boot
+		mount "$installdrive"1 /mnt/boot
+fi
+
 . ./step3.sh
