@@ -58,5 +58,26 @@ sed -i '/%wheel ALL=(ALL) ALL/s/^#//g' /etc/sudoers
 chsh -s /bin/zsh
 curl https://raw.githubusercontent.com/ApertureLinux/Configuration/main/.zshrc > /home/$newusername/.zshrc
 
+#install UX stuff
 
-echo "Aperture Linux is probably now installed on your system~!"
+#detect gpu, set correct drivers to variable (done? gotta test)
+if lspci -v | grep "Radeon"; then
+	correctpackages="xf86-video-amdgpu mesa lib32-mesa"
+else if lspci -v | grep "Intel Corporation HD Graphics"; then
+	correctpackages= "xf86-video-intel mesa lib32-mesa"
+else if lspci -v | grep "Nvidia"; then
+	correctpackages="nvidia nvidia-utils lib32-nvidia-utils"
+fi
+
+	#ask what DE user wants, set appropriate packages to variable
+
+correctpackages="$correctdrivers xorg-server xorg-apps xorg-xinit i3 numlockx dmenu"
+
+sudo pacman -S $correctpackages lightdm lightdm-gtk-greeter xterm noto-fonts ttf-ubuntu-font-family ttf-dejavu ttf-freefont ttf-liberation ttf-droid ttf-inconsolata ttf-roboto terminus-font ttf-font-awesome alsa-utils alsa-plugins alsa-lib pavucontrol dmenu firefox
+
+sudo systemctl enable lightdm
+sudo systemctl start lightdm
+
+echo "Aperture Linux is probably now installed on your system~! Rebooting in 5 seconds."
+
+sleep 5 && reboot
