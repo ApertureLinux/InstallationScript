@@ -49,7 +49,7 @@ clear
 
 #add user
 read -p "Type your desired username: " newusername
-useradd $newusername -d /home/$newusername
+useradd -d /home/$newusername $newusername
 passwd $newusername
 usermod --append --groups wheel $newusername
 sed -i '/%wheel ALL=(ALL) ALL/s/^#//g' /etc/sudoers 
