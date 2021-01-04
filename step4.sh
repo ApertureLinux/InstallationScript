@@ -65,10 +65,10 @@ curl https://raw.githubusercontent.com/ApertureLinux/Configuration/main/.zshrc >
 #detect gpu, set correct drivers to variable (done? gotta test)
 if lspci -v | grep "Radeon"; then
 	correctpackages="xf86-video-amdgpu mesa lib32-mesa"
+elif lspci -v | grep "Nvidia"; then
+	        correctpackages="nvidia nvidia-utils lib32-nvidia-utils"
 elif lspci -v | grep "Intel Corporation HD Graphics"; then
 	correctpackages= "xf86-video-intel mesa lib32-mesa"
-elif lspci -v | grep "Nvidia"; then
-	correctpackages="nvidia nvidia-utils lib32-nvidia-utils"
 elif lspci -v | grep "VMWare"; then
 	        correctpackages="virtualbox-guest-utils"
 elif lspci -v | grep "Hyper-V"; then
