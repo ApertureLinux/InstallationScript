@@ -49,6 +49,7 @@ clear
 
 #add user
 read -p "Type your desired username: " newusername
+mkdir /home/$newusername
 useradd -d /home/$newusername $newusername
 passwd $newusername
 usermod --append --groups wheel $newusername
