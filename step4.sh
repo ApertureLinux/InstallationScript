@@ -67,6 +67,10 @@ else if lspci -v | grep "Intel Corporation HD Graphics"; then
 	correctpackages= "xf86-video-intel mesa lib32-mesa"
 else if lspci -v | grep "Nvidia"; then
 	correctpackages="nvidia nvidia-utils lib32-nvidia-utils"
+else if lspci -v | grep "VMWare"; then
+	        correctpackages="virtualbox-guest-utils"
+else if lspci -v | grep "Hyper-V"; then
+	        correctpackages="xf86-video-fbdev"
 fi
 
 	#ask what DE user wants, set appropriate packages to variable
